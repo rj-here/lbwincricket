@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(231, 231, 231);
+    color: rgb(160, 0, 0);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    color: rgb(109, 0, 0);
+    font-size: 50px;
+}
+p {
+    font-size: small;
+    line-height: 1.5;
+    color: rgb(195, 0, 0);
+}
+a {
+    color:rgb(160, 0, 0)
+}
