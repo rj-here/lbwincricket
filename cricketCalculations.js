@@ -3,7 +3,7 @@ function getBattingStrikeRate() {
     var output = document.getElementById("output"); // The output element to display the strike rate
     var runsScored = parseInt(prompt("Input the number of runs scored by the batter")); // This prompt gets the runs scored by the batter
     var ballsFaced = parseInt(prompt("Input the number of balls faced by the batter")); // This prompt gets the number of balls faced by the batter
-    var bowlingSR = (runsScored / ballsFaced) * 100; // The calculation of strike rate: runs scored over the balls faced, multiplied by 100
+    var battingSR = (runsScored / ballsFaced) * 100; // The calculation of strike rate: runs scored over the balls faced, multiplied by 100
     document.getElementById("battingSR").innerHTML = "Batting Strike Rate: " + battingSR.toFixed(2); // Updating the HTML element with the batting strike rate
     output.innerHTML = "Batting Strike Rate: " + battingSR.toFixed(2); // Displaying the batting strike rate
 }
@@ -18,7 +18,7 @@ function getBattingAverage() {
     output.innerHTML = "Batting Average: " + average; // Displaying the batting average
 }
 
-function calculateBowlingAverage() {
+function getBowlingAverage() {
     // This function gets the bowling average of a bowler: runs conceded / wickets taken
     var output = document.getElementById("output"); // The output element to display the bowling average
     var runsConceded = parseInt(prompt("Input the number of runs conceded by the bowler")); // This prompt gets the runs conceded by the bowler
@@ -28,7 +28,7 @@ function calculateBowlingAverage() {
     output.innerHTML = "Bowling Average: " + avg.toFixed(2); // Displaying the bowling average
 }
 
-function calculateBowlingStrikeRate() {
+function getBowlingStrikeRate() {
     // This function gets the strike rate of a bowler: balls bowled / wickets taken
     var output = document.getElementById("output"); // The output element to display the bowling strike rate
     var ballsBowled = parseInt(prompt("Input the number of balls bowled by the bowler")); // This prompt gets the number of balls bowled by the bowler
@@ -38,7 +38,7 @@ function calculateBowlingStrikeRate() {
     output.innerHTML = "Bowling Strike Rate: " + strikeRate.toFixed(2); // Displaying the bowling strike rate
 }
 
-function calculateEconomyRate() {
+function getEconomyRate() {
     // This function gets the economy rate of a bowler: runs conceded / overs bowled
     var output = document.getElementById("output"); // The output element to display the economy rate
     var runsConceded = parseInt(prompt("Input the number of runs conceded by the bowler")); // This prompt gets the runs conceded by the bowler

@@ -40,10 +40,25 @@ aside {
     color: rgb(179, 0, 0);
 }
 p {
-    font-size: small;
+    font-size: 20px;
     line-height: 1.5;
     color: rgb(195, 0, 0);
 }
 a {
     color:rgb(160, 0, 0)
+}
+button {
+    background-color: rgb(178, 0, 0);
+    color: rgb(231, 231, 231);
+    border: red 2px solid;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+footer {
+    background-color: rgb(231, 231, 231);
+    color: rgb(160, 0, 0);
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
 }

@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NRR - Net Run Rate in Cricket</title>
+    <title>Bowling Statistics</title>
     <link rel="stylesheet" href="styles.css">
     <script src="cricketCalculations.js"></script>
 </head>
@@ -13,10 +13,40 @@
         <a href="netRunRate.html">NRR</a>
         <a href="https://rj-here.github.io/personalpage/index.html">Go To Rishi's Page</a>
     </aside>
-
+    <h1>LBW - Little Bit Wiser in Cricket</h1>
+    <h2>Bowling Statistics</h2>
+    <p>This page will help calculating some of the basic bowling statistics, such as the average, strike rate and economy.</p>
+    <h5>Average</h5>
+    <p>The bowling average is the number of runs conceded on average to get a wicket <a href="https://en.wikipedia.org/wiki/Bowling_average">(via Wikipedia)</a>. So, it'll be runs conceded ÷ wickets taken.</p>
+    <br>
+    <p>Intrigued? Here we go.</p>
+    <div id="box">
+        <p id="mydata"></p>
+        <button onclick="getBowlingAverage()">Calculate your bowling average!</button>
+        <strong><p id="bowlingAvg"></p></strong>
+    </div>
+    <h5>Strike Rate</h5>
+    <p>The bowling strike rate is the average number of deliveries bowled for every wicket taken <a href="https://en.wikipedia.org/wiki/Strike_rate">(via Wikipedia)</a>. So, it'll be deliveries bowled ÷ wickets taken.</p>
+    <br>
+    <p>Want to give a try yourself? Calculate away!</p>
+    <div id="box">
+        <p id="mydata2"></p>
+        <button onclick="getBowlingStrikeRate()">Calculate your bowling strike rate!</button>
+        <strong><p id="bowlingSR"></p></strong>
+    </div>
+    <h5>Economy Rate</h5>
+    <p>The economy rate is the average number of runs conceded per over <a href="https://en.wikipedia.org/wiki/Economy_rate">(via Wikipedia)</a>. For example, if a bowler has given 24 runs in 4 overs across a T20 spell, then their economy is 6.00. But that being said, if in some other match in progress, they've given 24 runs in 3 overs, their economy at that point in time is 8.00, but if the fourth and final over sees them getting tonked and smashed around the park for a whopping 26 runs, that means they have now conceded 50 runs across their 4 overs, so their economy is now 12.50 (expensive!).</p>
+    <br>
+    <p>Calculate away.</p>
+    <div id="box">
+        <p id="mydata3"></p>
+        <button onclick="getEconomyRate()">Calculate your economy rate!</button>
+        <strong><p id="economyRate"></p></strong>
+    </div>
+    
 </body>
 <footer>
     <a href="https://github.com/rj-here/lbwincricket">Here's the GitHub Repository to access the code</a>
-    <p>Created by Rishi.</p>
-    <p>Last updated: 19th June, 2025</p>
+    <p>© 2025 Rishi</p>
+    <p>Last updated: 20th June, 2025</p>
 </footer>

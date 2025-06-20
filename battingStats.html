@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NRR - Net Run Rate in Cricket</title>
+    <title>Batting Statistics</title>
     <link rel="stylesheet" href="styles.css">
     <script src="cricketCalculations.js"></script>
 </head>
@@ -13,10 +13,30 @@
         <a href="netRunRate.html">NRR</a>
         <a href="https://rj-here.github.io/personalpage/index.html">Go To Rishi's Page</a>
     </aside>
-
+    <h1>LBW - Little Bit Wiser in Cricket</h1>
+    <h2>Batting Statistics</h2>
+    <p>This page will help calculating some of the basic batting statistics, such as the average & strike rate of a player.</p>
+    <h5>Average</h5>
+    <p>The batting average will be the amount of runs scored by a batter divided by the number of dismissals <a href="https://en.wikipedia.org/wiki/Batting_average_(cricket)">(via Wikipedia)</a>.</p>
+    <br>
+    <p>Ready? Here we go.</p>
+    <div id="box">
+        <p id="mydata"></p>
+        <button onclick="getBattingAverage()">Calculate your batting average!</button>
+        <strong><p id="battingAvg"></p></strong>
+    </div>
+    <h5>Strike Rate</h5>
+    <p>The batting strike rate is the runs scored by the batter over the number of balls, mutliplied by 100 <a href="https://en.wikipedia.org/wiki/Strike_rate">(via Wikipedia)</a>.</p>
+    <br>
+    <p>As an example, I'll refer to the <a href="https://www.espncricinfo.com/series/icc-men-s-t20-world-cup-2022-23-1298134/england-vs-india-2nd-semi-final-1298178/full-scorecard">semi-final played at the 2022 Men's T20 World Cup between India and England</a>. Virat Kohli scored 50 runs in 40 balls. So, that would be (50 ÷ 40) * 100 = 125.00.</p>
+    <p>Ready? Here we go.</p>
+    <div id="box">
+        <p id="mydata2"></p>
+        <button onclick="getBattingStrikeRate()">Calculate your batting strike rate!</button>
+        <strong><p id="battingSR"></p></strong>
 </body>
 <footer>
     <a href="https://github.com/rj-here/lbwincricket">Here's the GitHub Repository to access the code</a>
-    <p>Created by Rishi.</p>
-    <p>Last updated: 19th June, 2025</p>
+    <p>© 2025 Rishi</p>
+    <p>Last updated: 20th June, 2025</p>
 </footer>
