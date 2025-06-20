@@ -1,0 +1,52 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRR - Net Run Rate in Cricket</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="cricketCalculations.js"></script>
+</head>
+<body>
+    <aside>
+        <a href="index.html">LBW</a>
+        <a href="battingStats.html">Batting Statistics</a>
+        <a href="bowlingStats.html">Bowling Statistics</a>
+        <a href="netRunRate.html">NRR</a>
+        <a href="https://rj-here.github.io/personalpage/index.html">Go To Rishi's Page</a>
+    </aside>
+    <h1>LBW - Little Bit Wiser in Cricket</h1>
+    <h2>Net Run Rate</h2>
+    <p>
+        Net run rate, something that often becomes the margin of deciding the teams progressing further in ICC tournaments, has often intrigued me. Here, we'll calculate that! It is the difference in run rates between the 2 teams <a href="https://www.espncricinfo.com/ci/content/page/429305.html">(via ESPNCricinfo)</a>.
+    </p>
+    <br>
+    <h5>Team 1 (FOR):</h5>
+    <p>
+        Take the total number of runs scored, by the team across all their games played, and divide it by the number of overs faced.
+        So, if a run of 3 ODI games for this team goes: 290 runs in 50 overs, 267 runs in 47.2 overs (so, 47 full overs with 2 more deliveries of the next over), 335 runs in 50 overs, then:
+        You will add the runs so 290 + 267 + 335 = 892 runs AND the overs faced will be 50 + (47*6 + 2)/6 + 50 = 147.33 overs.
+        So, the net run rate for this team will be 892/147.33 = 6.05. 
+    </p>
+    <h5>Team 2 (AGAINST):</h5>
+    <p>
+        It will be very similar to the FOR team, but there will be a modification. In the case of the AGAINST team, it will always be the maximum overs taken irrespective of whether the team was bowled out early in a game.
+        So, if the 3 opposition teams that played these ODI games had these scores: 287 in 50 overs, 270 in 45 overs, 105 in 21.4 overs (so, 21 full overs with 4 more deliveries of the next over), then:
+        You will add the runs so 287 + 270 + 105 = 662 runs AND the overs faced will NOT be 50 + (45*6)/6 + (21*6 + 4)/6 = 116.67 overs, and instead be 50 + 50 + 50 = 150 overs.
+        So, the net run rate for this team will be 662/150 = 4.41.
+    </p>
+    <h5>Final NRR:</h5>
+    <p>
+        And then, the calculation will be as follows: (For - Against): NRR: 6.05 - 4.41 = 1.64
+    </p>
+    <br>
+    <h6>Now your turn: </h6>
+        <div id="box">
+            <p id="mydata"></p>
+            <button onclick="getNRR()">Calculate your net run rate!</button>
+            <strong><p id="nrr"></p></strong>
+        </div>
+</body>
+<footer>
+    <a href="https://github.com/rj-here/lbwincricket">Here's the GitHub Repository to access the code</a>
+    <p>Created by Rishi.</p>
+    <p>Last updated: 19th June, 2025</p>
+</footer>

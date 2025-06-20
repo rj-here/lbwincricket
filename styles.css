@@ -6,8 +6,38 @@ body{
     padding: 20px;
 }
 h1 {
+    background-color: rgb(231, 231, 231);
     color: rgb(109, 0, 0);
-    font-size: 50px;
+    font-size: 45px;
+}
+h2 {
+    background-color: rgb(231, 231, 231);
+    color: rgb(109, 0, 0);
+    font-size: 40px;
+}
+h3 {
+    background-color: rgb(231, 231, 231);
+    color: rgb(109, 0, 0);
+    font-size: 35px;
+}
+h4 {
+    background-color: rgb(231, 231, 231);
+    color: rgb(109, 0, 0);
+    font-size: 30px;
+}
+h5 {
+    background-color: rgb(231, 231, 231);
+    color: rgb(109, 0, 0);
+    font-size: 25px;
+}
+h6 {
+    background-color: rgb(231, 231, 231);
+    color: rgb(109, 0, 0);
+    font-size: 20px;
+}
+aside {
+    background-color: rgb(231, 231, 231);
+    color: rgb(179, 0, 0);
 }
 p {
     font-size: small;
