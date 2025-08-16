@@ -87,11 +87,11 @@ return dlsResources[wicketsLost][oversRemaining]; // Returns the resource percen
 }
 }
 
-function getDLS() {
+function getDLS(caseNum) {
     //This function calculates the target score for the chasing team in a rain-affected limited overs match with the DLS (Duckworth-Lewis-Stern) method
-    var output = document.getElementById("output"); // The output element to display the target score
-    if (document.getElementById("case1")) { //if the button for case 1 clicked
-    var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
+//    var output = document.getElementById("output"); // The output element to display the target score
+    if (caseNum == 1) { //if the button for case 1 clicked
+    var oversAvail1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
     var oversRemainAt1 = parseInt(prompt("Overs remaining at the time of interruption to Team 1: ")); //Getting overs remaining at time of interruption to Team 1
     var wicketsLost = parseInt(prompt("Wickets lost by Team 1: ")); //Getting wickets lost by Team 1
     var oversRemainAfter1 = parseInt(prompt("Overs remaining after the interruption to Team 1: ")); //Getting overs remaining after the interruption to Team 1
@@ -100,22 +100,22 @@ function getDLS() {
     var avgScore = parseInt(prompt("What's the average expected score?")); //Getting average expected score
     
 
-    var resources1 = 100 - resources(wicketsLost, oversRemainAt1) - resources(wicketsLost, oversRemainAfter1); //The resources available to Team 1
+    var resources1 = resources(0, oversAvailTeam1) - resources(wicketsLost, oversRemainAt1) - resources(wicketsLost, oversRemainAfter1); //The resources available to Team 1
     var resources2 = resources(wicketsLost, oversAvail2); //The resources available to Team 2
 
     var targetScore = 0; //Initialising the target score variable
     if (resources1 < resources2) { //Team 1 resources < Team 2 resources
-        targetScore = (int) (Math.ceil(runsScoredTeam1 * (resources2 / resources1))); //Target score is calculated based on the resources available to both teams
+        targetScore = Math.ceil(runsScoredTeam1 + (avgScore * ((resources2 - resources1)/100))); //Target score is calculated based on the average expected score and the resources available to Team 2
     }
     else if (resources1 > resources2) { //Team 1 resources > Team 2 resources
-        targetScore = (int) (Math.ceil(runsScoredTeam1 + (avgScore * (resources2 - resources1)/100))); //Target score is calculated based on the average expected score and the resources available to Team 2
+        targetScore = Math.ceil(runsScoredTeam1 * (resources2 / resources1)); //Target score is calculated based on the resources available to both teams
     } else { //Team 1 resources = Team 2 resources
         targetScore = runsScoredTeam1 + 1; //Target score is equal to the runs scored by Team 1 + 1 (because you are chasing, and you have to get one more than the team batting first)
     }
     document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the target score
-    output.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
+    targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
     }
-    else if (document.getElementById("case2")) { //if the button for case 2 clicked
+    else if (caseNum == 2) { //if the button for case 2 clicked
         var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
         var oversRemainAt1 = parseInt(prompt("Overs remaining at the time of interruption to Team 1: ")); //Getting overs remaining at time of interruption to Team 1
         var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
@@ -129,17 +129,18 @@ function getDLS() {
 
         var targetScore = 0; //Initialising the target score variable
         if (resources1 < resources2) { //Team 1 resources < Team 2 resources
-            targetScore = (int) (Math.ceil(runsScoredTeam1 * (resources2 / resources1))); //Target score is calculated based on the resources available to both teams
+            targetScore = Math.ceil(runsScoredTeam1 + (avgScore * (resources2 - resources1)/100)); //Target score is calculated based on the average expected score and the resources available to Team 2
         }
         else if (resources1 > resources2) { //Team 1 resources > Team 2 resources
-            targetScore = (int) (Math.ceil(runsScoredTeam1 + (avgScore * (resources2 - resources1)/100))); //Target score is calculated based on the average expected score and the resources available to Team 2
+            targetScore = Math.ceil(runsScoredTeam1 * (resources2 / resources1)); //Target score is calculated based on the resources available to both teams
+
         } else { //Team 1 resources = Team 2 resources
             targetScore = runsScoredTeam1 + 1; //Target score is equal to the runs scored by Team 1 + 1 (because you are chasing, and you have to get one more than the team batting first)
         }
         document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the
-        output.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
+        targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
     }
-    else if (document.getElementById("case3")) { //if the button for case 3 clicked
+    else if (caseNum == 3) { //if the button for case 3 clicked
         var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
         var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
         var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
@@ -151,17 +152,17 @@ function getDLS() {
 
         var targetScore = 0; //Initialising the target score variable
         if (resources1 < resources2) { //Team 1 resources < Team 2 resources
-            targetScore = (int) (Math.ceil(runsScoredTeam1 * (resources2 / resources1))); //Target score is calculated based on the resources available to both teams
+            targetScore = Math.ceil(runsScoredTeam1 * (resources2 / resources1)); //Target score is calculated based on the resources available to both teams
         }
         else if (resources1 > resources2) { //Team 1 resources > Team 2 resources
-            targetScore = (int) (Math.ceil(runsScoredTeam1 + (avgScore * (resources2 - resources1)/100))); //Target score is calculated based on the average expected score and the resources available to Team 2
+            targetScore = Math.ceil(runsScoredTeam1 + (avgScore * (resources2 - resources1)/100)); //Target score is calculated based on the average expected score and the resources available to Team 2
         } else { //Team 1 resources = Team 2 resources
             targetScore = runsScoredTeam1 + 1; //Target score is equal to the runs scored by Team 1 + 1 (because you are chasing, and you have to get one more than the team batting first)
         }
         document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the target score
-        output.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
+        targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
     }
-    else if (document.getElementById("case4")) { //if the button for case 4 clicked
+    else if (caseNum == 4) { //if the button for case 4 clicked
         var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
         var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
         var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
@@ -171,17 +172,17 @@ function getDLS() {
         var resources2 = resources(wicketsLost, oversAvail2); //The resources available to Team 2
         var targetScore = 0; //Initialising the target score variable
         if (resources1 < resources2) { //Team 1 resources < Team 2
-            targetScore = (int) (Math.ceil(runsScoredTeam1 * (resources2 / resources1))); //Target score is calculated based on the resources available to both teams
+            targetScore = Math.ceil(runsScoredTeam1 * (resources2 / resources1)); //Target score is calculated based on the resources available to both teams
         }
         else if (resources1 > resources2) { //Team 1 resources > Team 2 resources
-            targetScore = (int) (Math.ceil(runsScoredTeam1 + (avgScore * (resources2 - resources1)/100))); //Target score is calculated based on the average expected score and the resources available to Team 2
+            targetScore = Math.ceil(runsScoredTeam1 + (avgScore * (resources2 - resources1)/100)); //Target score is calculated based on the average expected score and the resources available to Team 2
         } else { //Team 1 resources = Team 2 resources
             targetScore = runsScoredTeam1 + 1; //Target score is equal to the runs scored by Team 1 + 1 (because you are chasing, and you have to get one more than the team batting first)
         }
         document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the target score
-        output.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
+        targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
     }
-    else if (document.getElementById("case5")) {
+    else if (caseNum == 5) { //if the button for case 5 clicked
         var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
         var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
         var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
@@ -189,17 +190,17 @@ function getDLS() {
         var wicketsLost = parseInt(prompt("Wickets lost by Team 1: ")); //Getting wickets lost by Team 1
         var resources1 = 100; //The resources available to Team 1 (100% as they batted their full quota)
         var resources2 = resources(wicketsLost, oversAvail2); //The resources available to Team 2
-        var targetScore = 0; //Initialising the target score variable
+        var targetScore = 0; //Initializing the target score variable
         if (resources1 < resources2) { //Team 1 resources < Team 2 resources
-            targetScore = (int) (Math.ceil(runsScoredTeam1 * (resources2 / resources1))); //Target score is calculated based on the resources available to both teams
+            targetScore = Math.ceil(runsScoredTeam1 * (resources2 / resources1)); //Target score is calculated based on the resources available to both teams
         }
         else if (resources1 > resources2) { //Team 1 resources > Team 2 resources
-            targetScore = (int) (Math.ceil(runsScoredTeam1 + (avgScore * (resources2 - resources1)/100))); //Target score is calculated based on the average expected score and the resources available to Team 2
+            targetScore = Math.ceil(runsScoredTeam1 + (avgScore * (resources2 - resources1)/100)); //Target score is calculated based on the average expected score and the resources available to Team 2
         } else { //Team 1 resources = Team 2 resources
             targetScore = runsScoredTeam1 + 1; //Target score is equal to the runs scored by Team 1 + 1 (because you are chasing, and you have to get one more than the team batting first)
         }
         document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the target score
-        output.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
+        targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
     }
     
 

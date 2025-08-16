@@ -3,7 +3,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LBW - Little Bit Wiser in Cricket - DLS (Duckworth-Lewis-Stern System)</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="cricketCalculations.js"></script>
 </head>
 <body>
     <aside>
@@ -32,29 +31,30 @@
     <br>
         1. Team 1 has their innings interrupted by rain.
         <br>
-        <button id="case1" onclick="getDLS()">Figure out your score</button>
+        <button id="case1" onclick="getDLS(1)">Figure out your score</button>
         <br>
         2. Team 1 has their innings cut short.
         <br>
-        <button id="case2" onclick="getDLS()">Figure out your score</button>
+        <button id="case2" onclick="getDLS(2)">Figure out your score</button>
         <br>
         3. Team 2 has their innings interrupted by rain.
         <br>
-        <button id="case3" onclick="getDLS()">Figure out your score</button>
+        <button id="case3" onclick="getDLS(3)">Figure out your score</button>
         <br>
         4. Team 2 has their innings cut short.
         <br>
-        <button id="case4" onclick="getDLS()">Figure out your score</button>
+        <button id="case4" onclick="getDLS(4)">Figure out your score</button>
         <br>
         5. Team 2 has their innings interrupted by rain.
         <br>
-        <button id="case5" onclick="getDLS()">Figure out your score</button>
+        <button id="case5" onclick="getDLS(5)">Figure out your score</button>
         <br>
     <div id="targetScore">
         <!-- This is where the target score will be displayed -->    
     </div>
     </p>
- 
+    <script src="cricketCalculations.js"></script>
+
 </body>
 <footer>
     <a href="https://github.com/rj-here/lbwincricket">Here's the GitHub Repository to access the code</a>
