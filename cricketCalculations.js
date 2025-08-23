@@ -99,11 +99,12 @@ function getDLS(caseNum) {
     var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
     var avgScore = parseInt(prompt("What's the average expected score?")); //Getting average expected score
     
-
-    var resources1 = resources(0, oversAvailTeam1) - resources(wicketsLost, oversRemainAt1) - resources(wicketsLost, oversRemainAfter1); //The resources available to Team 1
+    var resources1Before = resources(wicketsLost, oversRemainAt1); //Resources before the interruption to Team 1
+    var resources1After = resources(wicketsLost, oversRemainAfter1); //Resources after the interruption to Team 1
+    var resources1 = resources(0, oversAvailTeam1) - (resources1Before - resources1After); //The resources available to Team 1
     var resources2 = resources(wicketsLost, oversAvail2); //The resources available to Team 2
 
-    var targetScore = 0; //Initialising the target score variable
+    var targetScore = 0; //Initializing the target score variable
     if (resources1 < resources2) { //Team 1 resources < Team 2 resources
         targetScore = Math.ceil(runsScoredTeam1 + (avgScore * ((resources2 - resources1)/100))); //Target score is calculated based on the average expected score and the resources available to Team 2
     }
@@ -204,4 +205,8 @@ function getDLS(caseNum) {
     }
     
 
+}
+
+function reviewLBW() {
+    
 }
