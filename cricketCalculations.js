@@ -207,5 +207,6 @@ function getDLS(caseNum) {
 }
 
 function reviewLBW() {
+    //This function is for simulating a review using DRS, to determine if a batter is out via leg-before-wicket (LBW)
     
 }
