@@ -82,14 +82,13 @@ function resources(wicketsLost, oversRemaining) {
 if (wicketsLost == 10 || oversRemaining == 0) {
     return 0; // If all wickets are lost or no overs are remaining, return 0
 }
-else if (wicketsLost >= 0 && wicketsLost <= 9 || oversRemaining > 0 || oversRemaining < 50) {
-return dlsResources[wicketsLost][oversRemaining]; // Returns the resource percentage based on wickets lost and overs remaining
+else if (wicketsLost >= 0 && wicketsLost <= 9 || oversRemaining > 0 || oversRemaining <= 50) {
+return dlsResources[wicketsLost][oversRemaining-1]; // Returns the resource percentage based on wickets lost and overs remaining
 }
 }
 
 function getDLS(caseNum) {
     //This function calculates the target score for the chasing team in a rain-affected limited overs match with the DLS (Duckworth-Lewis-Stern) method
-//    var output = document.getElementById("output"); // The output element to display the target score
     if (caseNum == 1) { //if the button for case 1 clicked
     var oversAvail1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
     var oversRemainAt1 = parseInt(prompt("Overs remaining at the time of interruption to Team 1: ")); //Getting overs remaining at time of interruption to Team 1
