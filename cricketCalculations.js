@@ -205,8 +205,46 @@ function getDLS(caseNum) {
     
 
 }
+var decision = false; pitchingOption = false, impactOption = false, wicketsOption = false;; //These global variables will be used for the reviewLBW function
+function outOrNot(option) {
+    //This function is for the original decision
+    if (option == 1) {
+        decision = true; //true will be towards out!
+    } 
+    
+}
+function pitching(option) {
+    //This function is ONLY for where the ball is pitching
+    if (option == 1) {
+        pitchingOption = true;
+    }
+}
+
+function impact(option) {
+    //This function is ONLY for the impact of the ball
+    if (option == 1) {
+        impactOption = true;
+    }
+}
+
+function wickets(option) {
+    //This function is ONLY for where the wickets are hitting in the process
+    if (option == 1) {
+    wicketsOption = true;
+    }
+}
+
 
 function reviewLBW() {
     //This function is for simulating a review using DRS, to determine if a batter is out via leg-before-wicket (LBW)
+   if ((pitchingOption == true) && (impactOption == true) && (wicketsOption == true)) {
+    decision = true;
+   } //if pitching inline, impact inline, wickets hitting is out!
+
+   if (decision == true) {
+    alert("It's out!");
+   }
+
+
     
 }

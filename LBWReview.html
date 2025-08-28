@@ -23,30 +23,51 @@
     <img src="LBW Review Image Sample.webp" alt="A sample of an LBW call">
     <caption>(via Cricket All)</caption>
     <p>
-        Sources:
+        <details output="Sources">
         <a href="https://en.wikipedia.org/wiki/Leg_before_wicket">Wikipedia</a>
+        <br>
         <a href="https://www.lords.org/mcc/the-laws-of-cricket-2d35b4b95a4a67ae8f9c76f258a84aa8/leg-before-wicket">The MCC Law 36 (Leg Before Wicket)</a>
+        <br>
+        <a href="https://www.youtube.com/watch?si=HDx8EMbZFoFiZrHj&embeds_referring_euri=https%3A%2F%2Fwww.lords.org%2F&source_ve_path=Mjg2NjQsMTY0NTA2&v=Dk1-8NtAavA&feature=youtu.be">Lord's Explainer Video</a>
+        <br>
         <a href="https://cricketira.com/lbw-in-cricket">Cricket All</a>
+        <br>
         <a href="https://www.cricket.com.au/news/3319658/umpires-call-explained-why-is-that-not-out">Cricket Australia</a>
+        <br>
+        <a href="https://youtu.be/t-fFhpD1-Xs?si=Ibs4u5Kehe7MUbNg">Sky Sports Video</a>
+        <br>
+        <a href="https://youtu.be/8wKOxICoWlI?si=_LCl17IAxuU8G26B">Cricket Cordon Video</a>
+        </details>
     </p>
 
-    <h3>Question 1: What is the impact?</h3>
-    <input id="Q1O1" type="checkbox">In-line
-    <input id="Q1O2" type="checkbox">Outside-line <!--Still need to verify-->
-    <input id="Q1O2" type="checkbox">Umpire's call <!--Still need to verify-->
-    
-    <h3>Question 2: Are the wickets hitting?</h3>
-    <input id="Q2O1" type="checkbox">Hitting
-    <input id="Q2O2" type="checkbox">Missing
-    <input id="Q2O3" type="checkbox">Umpire's call
+    <h3>Question 1: What is the original decision?</h3>
+    <input id="Q1O1" type="checkbox" onclick="outOrNot(1)"> Out
+    <br>
+    <input id="Q1O2" type="checkbox" onclick="outOrNot(2)"> Not out
 
-    <h3>Question 3: Where is the ball pitching?</h3>
-    <input id="Q3O1" type="checkbox">Outside off
-    <input id="Q3O2" type="checkbox"> <!--Need to fill-->
-    <input id="Q3O3" type="checkbox"> <!--Need to fill-->
+
+    <h3>Question 2: Where is the ball pitching?</h3>
+    <input id="Q2O1" type="checkbox" onclick="pitching(1)"> In-line OR (if the batter has NOT made a genuine attempt to make a shot) Outside off
+    <br>
+    <input id="Q2O2" type="checkbox" onclick="pitching(2)"> Outside leg OR (if the batter has made a genuine attempt to make a shot) Outside off
+
+    <h3>Question 3: What is the impact?</h3>
+    <input id="Q3O1" type="checkbox" onclick="impact(1)"> In-line
+    <br>
+    <input id="Q3O2" type="checkbox" onclick="impact(2)"> Outside <!--Still need to verify-->
+    <br>
+    <input id="Q3O2" type="checkbox" onclick="impact(3)"> Umpire's call <!--Still need to verify-->
+    
+    <h3>Question 4: Are the wickets hitting?</h3>
+    <input id="Q4O1" type="checkbox" onclick="wickets(1)"> Hitting
+    <br>
+    <input id="Q4O2" type="checkbox" onclick="wickets(2)"> Missing
+    <br>
+    <input id="Q4O3" type="checkbox" onclick="wickets(3)"> Umpire's call
+
 </body>
 <footer>
     <a href="https://github.com/rj-here/lbwincricket">Here's the GitHub Repository to access the code</a>
     <p>© 2025 Rishi</p>
-    <p>Last updated: 27th August, 2025</p>
+    <p>Last updated: 28th August, 2025</p>
 </footer>
