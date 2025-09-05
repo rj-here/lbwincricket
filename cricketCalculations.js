@@ -118,13 +118,24 @@ function getDLS(caseNum) {
     }
     else if (caseNum == 2) { //if the button for case 2 clicked
         var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
-        var oversRemainAt1 = parseInt(prompt("Overs remaining at the time of interruption to Team 1: ")); //Getting overs remaining at time of interruption to Team 1
-        var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
         var wicketsLost = parseInt(prompt("Wickets lost by Team 1: ")); //Getting wickets lost by Team 1
+        var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
         var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
         var avgScore = parseInt(prompt("What's the average expected score?")); //Getting average expected score
         var targetScore = 0; //Initializing the target score variable
 
+        var team1Resources = resources(wicketsLost, oversAvailTeam1); //Calculating the resources of Team 1
+        var team2Resources = resources(0, oversAvail2); //Calculating the resources of Team 2
+
+        if (team2Resources < team1Resources) { //team 2 resources < team 1 resources
+            targetScore = Math.ceil(runsScoredTeam1 * (team2Resources/team1Resources)); //Calculating the target score for Team 2
+        }
+        else if (team2Resources > team1Resources) {//team 2 resources > team 1 resources
+            targetScore = Math.ceil(runsScoredTeam1 + (avgScore * ((team2Resources - team1Resources)/100))); //Calculating the target score for Team 2
+        }
+        else if (team2Resources == team1Resources) {
+            targetScore = runsScoredTeam1 + 1; //If resources are equal, target score is runs scored by Team 1 + 1 (as is in the conventional game)
+        }
         document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the
         targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
     }
