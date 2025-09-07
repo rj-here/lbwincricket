@@ -143,10 +143,26 @@ function getDLS(caseNum) {
         var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
         var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
         var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
+        var oversRemainAt2 = parseInt(prompt("Overs remaining at the time of interruption for Team 2: ")); //Getting overs remaining at time of interruption for Team 2
+        var oversRemainAfter2 = parseInt(prompt("Overs remaining after the interruption for Team 2: ")); //Getting overs remaining after the interruption to Team 2
         var avgScore = parseInt(prompt("What's the average expected score?")); //Getting average expected score
         var wicketsLost = parseInt(prompt("Wickets lost by Team 2: ")); //Getting wickets lost by Team 1
         var targetScore = 0; //Initializing the target score variable
 
+        var team1Resources = resources(0, oversAvailTeam1); //Calculating the resources of Team 1
+        var team2ResourcesAt = resources(wicketsLost, oversRemainAt2); //Calculating resources at the point of interruption for Team 2
+        var team2ResourcesAfter = resources(wicketsLost, oversRemainAfter2); //Calculating resources after the interruption for Team 2
+        var team2Resources = resources(0, oversAvail2) - (team2ResourcesAt - team2ResourcesAfter); //Calculating total resources for Team 2
+        
+        if (team2Resources < team1Resources) { //team 2 resources < team 1 resources
+            targetScore = Math.ceil(runsScoredTeam1 * (team2Resources/team1Resources)); //Calculating the target score for Team 2
+        }
+        else if (team2Resources > team1Resources) {//team 2 resources > team 1 resources
+            targetScore = Math.ceil(runsScoredTeam1 + (avgScore * ((team2Resources - team1Resources)/100))); //Calculating the target score for Team 2
+        }
+        else if (team2Resources == team1Resources) {
+            targetScore = runsScoredTeam1 + 1; //If resources are equal, target score is runs scored by Team 1 + 1 (as is in the conventional game)
+        }
         document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the target score
         targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
     }
@@ -186,15 +202,22 @@ function outOrNot(option) {
 function pitching(option) {
     //This function is ONLY for where the ball is pitching
     if (option == 1) {
-        pitchingOption = true;
+        pitchingOption = true; //true is towards an out decision!
+    }
+    if (option == 2) {
+        pitchingOption = false; //false is towards not out decision!
     }
 }
 
 function impact(option) {
     //This function is ONLY for the impact of the ball
     if (option == 1) {
-        impactOption = true;
+        impactOption = true; //true is towards an out decision!
     }
+    if (option == 2) {
+        impactOption = false; //false is towards not out decision!
+    }
+    
 }
 
 function wickets(option) {
