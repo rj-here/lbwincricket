@@ -145,7 +145,6 @@ function getDLS(caseNum) {
         var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
         var oversRemainAt2 = parseInt(prompt("Overs remaining at the time of interruption for Team 2: ")); //Getting overs remaining at time of interruption for Team 2
         var oversRemainAfter2 = parseInt(prompt("Overs remaining after the interruption for Team 2: ")); //Getting overs remaining after the interruption to Team 2
-        var avgScore = parseInt(prompt("What's the average expected score?")); //Getting average expected score
         var wicketsLost = parseInt(prompt("Wickets lost by Team 2: ")); //Getting wickets lost by Team 1
         var targetScore = 0; //Initializing the target score variable
 
@@ -158,7 +157,7 @@ function getDLS(caseNum) {
             targetScore = Math.ceil(runsScoredTeam1 * (team2Resources/team1Resources)); //Calculating the target score for Team 2
         }
         else if (team2Resources > team1Resources) {//team 2 resources > team 1 resources
-            targetScore = Math.ceil(runsScoredTeam1 + (avgScore * ((team2Resources - team1Resources)/100))); //Calculating the target score for Team 2
+            targetScore = Math.ceil(runsScoredTeam1 * ((team2Resources - team1Resources)/100)); //Calculating the target score for Team 2
         }
         else if (team2Resources == team1Resources) {
             targetScore = runsScoredTeam1 + 1; //If resources are equal, target score is runs scored by Team 1 + 1 (as is in the conventional game)
@@ -169,13 +168,28 @@ function getDLS(caseNum) {
     else if (caseNum == 4) { //if the button for case 4 clicked
         var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
         var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
-        var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
-        var avgScore = parseInt(prompt("What's the average expected score?")); //Getting average expected score
-        var wicketsLost = parseInt(prompt("Wickets lost by Team 1: ")); //Getting wickets lost by Team 1
-        var targetScore = 0; //Initialising the target score variable
+        var oversAvail2 = parseInt(prompt("Overs available to Team 2 (to start with): ")); //Collecting the overs available to Team 2
+        var wicketsLost = parseInt(prompt("Wickets lost by Team 2: ")); //Getting wickets lost by Team 2
+        var oversLeft2 = parseInt(prompt("Overs remaining at the time of interruption for Team 2")); //Getting average expected score
+        var targetScore = 0; //Initializing the target score variable
         
+        var team1Resources = resources(0, oversAvailTeam1); //Calculating the resources of Team 1
+        var team2RsourcesStart = resources(0, oversAvail2); //Calculating the resources of Team 2 at the start
+        var team2ResourcesNow = resources(wicketsLost, oversLeft2); //Calculating the resources of Team 2 at the interruption point
+        var team2Resources = team2RsourcesStart - team2ResourcesNow; //Calculating total resources for Team 2
+
+        if (team2Resources < team1Resources) { //team 2 resources < team 1 resources
+            targetScore = Math.ceil(runsScoredTeam1 * (team2Resources/team1Resources)); //Calculating the target score for Team 2
+        }
+        else if (team2Resources > team1Resources) {//team 2 resources > team 1 resources
+            targetScore = Math.ceil(runsScoredTeam1 * ((team2Resources - team1Resources)/100)); //Calculating the target score for Team 2
+        }
+        else if (team2Resources == team1Resources) {
+            targetScore = runsScoredTeam1 + 1; //If resources are equal, target score is runs scored by Team 1 + 1 (as is in the conventional game)
+        }
         document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the target score
         targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
+        
     }
     else if (caseNum == 5) { //if the button for case 5 clicked
         var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
