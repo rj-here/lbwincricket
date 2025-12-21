@@ -39,35 +39,19 @@
         <a href="https://youtu.be/8wKOxICoWlI?si=_LCl17IAxuU8G26B">Cricket Cordon Video</a>
         </details>
     </p>
-
-    <h3>Question 1: What is the original decision?</h3>
-    <input id="Q1O1" type="checkbox" onclick="outOrNot(1)"> Out
-    <br>
-    <input id="Q1O2" type="checkbox" onclick="outOrNot(2)"> Not out
-
-
-    <h3>Question 2: Where is the ball pitching?</h3>
-    <input id="Q2O1" type="checkbox" onclick="pitching(1)"> In-line OR (if the batter has NOT made a genuine attempt to make a shot) Outside off
-    <br>
-    <input id="Q2O2" type="checkbox" onclick="pitching(2)"> Outside leg OR (if the batter has made a genuine attempt to make a shot) Outside off
-
-    <h3>Question 3: What is the impact?</h3>
-    <input id="Q3O1" type="checkbox" onclick="impact(1)"> In-line
-    <br>
-    <input id="Q3O2" type="checkbox" onclick="impact(2)"> Outside <!--Still need to verify-->
-    <br>
-    <input id="Q3O2" type="checkbox" onclick="impact(3)"> Umpire's call <!--Still need to verify-->
+    <p>So, let's get started. Here are the questions you'll be asked when you review an LBW decision:</p>
+    <ol>
+        <li>What was the on-field umpire's decision?</li>
+        <li>Did the ball pitch in line with the stumps or outside off stump?</li>
+        <li>Did the ball impact in line with the stumps or outside off stump?</li>
+        <li>Would the ball have hit the stumps?</li>
+    </ol>
+    <p>Answer these questions to the best of your ability, and at the end, you'll get to know whether the decision stands or is overturned.</p>
+    <button id="howzzat" onclick="decisionsLBW()">Howzzat?</button>
     
-    <h3>Question 4: Are the wickets hitting?</h3>
-    <input id="Q4O1" type="checkbox" onclick="wickets(1)"> Hitting
-    <br>
-    <input id="Q4O2" type="checkbox" onclick="wickets(2)"> Missing
-    <br>
-    <input id="Q4O3" type="checkbox" onclick="wickets(3)"> Umpire's call
-
 </body>
 <footer>
     <a href="https://github.com/rj-here/lbwincricket">Here's the GitHub Repository to access the code</a>
     <p>© 2025 Rishi</p>
-    <p>Last updated: 17th September, 2025</p>
+    <p>Last updated: 20th December, 2025</p>
 </footer>

@@ -90,6 +90,11 @@ return dlsResources[wicketsLost][oversRemaining-1]; // Returns the resource perc
 function getDLS(caseNum) {
     //This function calculates the target score for the chasing team in a rain-affected limited overs match with the DLS (Duckworth-Lewis-Stern) method
     if (caseNum == 1) { //if the button for case 1 clicked
+    var maxOvers = parseInt(prompt("Maximum overs in the match: ")); //Getting the maximum overs in the match
+    if (maxOvers < 20 || maxOvers > 50) {
+        alert("Maximum overs must be between 20 and 50. Please try again.");
+        return; // Exit the function if the condition is not met
+    }
     var oversAvail1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
     var oversRemainAt1 = parseInt(prompt("Overs remaining at the time of interruption to Team 1: ")); //Getting overs remaining at time of interruption to Team 1
     var wicketsLost = parseInt(prompt("Wickets lost by Team 1: ")); //Getting wickets lost by Team 1
@@ -116,34 +121,41 @@ function getDLS(caseNum) {
     document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the target score
     targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
     }
-    else if (caseNum == 2) { //if the button for case 2 clicked
-        var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
-        var wicketsLost = parseInt(prompt("Wickets lost by Team 1: ")); //Getting wickets lost by Team 1
-        var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
-        var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
-        if (oversAvail2 < oversAvailTeam1) {
-            alert("Overs available to Team 2 must be greater than or equal to overs available to Team 1. Please try again.");
+    else if (caseNum == 2) { // Team 1 has their innings cut short
+    var maxOvers = parseInt(prompt("Maximum overs in the match: ")); //Getting the maximum overs allowed in the match
+    if (maxOvers < 20 || maxOvers > 50) {
+        alert("Maximum overs must be between 20 and 50. Please try again.");
+    return;
+    }
+    var oversAvailTeam1 = parseInt(prompt("Overs batted by Team 1: ")); //Overs batted by Team 1
+    var wicketsLost = parseInt(prompt("Wickets lost by Team 1: ")); //Wickets lost by Team 1
+    var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Runs scored by Team 1
+    var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Overs available to Team 2
+    var avgScore = parseInt(prompt("What's the average expected score?")); //Getting average expected score
+
+    // Calculate resources for both teams
+    var team1Resources = resources(wicketsLost, oversAvailTeam1); 
+    var team2Resources = resources(0, oversAvail2);
+
+    var targetScore = 0;
+    if (team2Resources < team1Resources) {
+        targetScore = Math.ceil(runsScoredTeam1 * (team2Resources / team1Resources));
+    } 
+    else if (team2Resources > team1Resources) {
+        targetScore = Math.ceil(runsScoredTeam1 + avgScore * ((team2Resources - team1Resources) / 100));
+    } 
+    else {
+        targetScore = runsScoredTeam1 + 1;
+    }
+
+        document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore;
+        }
+    else if (caseNum == 3) { //if the button for case 3 clicked
+        var maxOvers = parseInt(prompt("Maximum overs in the match: ")); //Getting the maximum overs in the match
+        if (maxOvers < 20 || maxOvers > 50) {
+            alert("Maximum overs must be between 20 and 50. Please try again.");
             return; // Exit the function if the condition is not met
         }
-        var avgScore = parseInt(prompt("What's the average expected score?")); //Getting average expected score
-        var targetScore = 0; //Initializing the target score variable
-
-        var team1Resources = resources(wicketsLost, oversAvailTeam1); //Calculating the resources of Team 1
-        var team2Resources = resources(0, oversAvail2); //Calculating the resources of Team 2
-
-        if (team2Resources < team1Resources) { //team 2 resources < team 1 resources
-            targetScore = Math.ceil(runsScoredTeam1 * (team2Resources/team1Resources)); //Calculating the target score for Team 2
-        }
-        else if (team2Resources > team1Resources) {//team 2 resources > team 1 resources
-            targetScore = Math.ceil(runsScoredTeam1 + (avgScore * ((team2Resources - team1Resources)/100))); //Calculating the target score for Team 2
-        }
-        else if (team2Resources == team1Resources) {
-            targetScore = runsScoredTeam1 + 1; //If resources are equal, target score is runs scored by Team 1 + 1 (as is in the conventional game)
-        }
-        document.getElementById("targetScore").innerHTML = "Target Score for Team 2: " + targetScore; //Updating the HTML element with the
-        targetScore.innerHTML = "Target Score for Team 2: " + targetScore; // Displaying the target score
-    }
-    else if (caseNum == 3) { //if the button for case 3 clicked
         var oversAvailTeam1 = parseInt(prompt("Overs available to Team 1: ")); //Collecting the overs available to Team 1
         var runsScoredTeam1 = parseInt(prompt("Runs scored by Team 1: ")); //Getting runs scored by Team 1
         var oversAvail2 = parseInt(prompt("Overs available to Team 2: ")); //Collecting the overs available to Team 2
@@ -219,31 +231,33 @@ function getDLS(caseNum) {
     
 
 }
-var decision = false; pitchingOption = false, impactOption = false, wicketsOption = false;; //These global variables will be used for the reviewLBW function
+/*var decision = false; pitchingOption = false, impactOption = false, wicketsOption = false;; //These global variables will be used for the reviewLBW function
 function outOrNot(option) {
     //This function is for the original decision
     if (option == 1) {
         decision = true; //true will be towards out!
-    } 
-    
+    }
+    else if (option == 2) { 
+        decision = false; //false will be towards not out!
+    }
 }
 function pitching(option) {
     //This function is ONLY for where the ball is pitching
     if (option == 1) {
-        pitchingOption = true; //true is towards an out decision!
+        pitchingOption = true; //true is towards an out decision! Pitching in line OR outside off (if batter not making an attempt)
     }
     if (option == 2) {
-        pitchingOption = false; //false is towards not out decision!
+        pitchingOption = false; //false is towards not out decision! Pitching outside leg OR off (if batter making an attempt)
     }
 }
 
 function impact(option) {
     //This function is ONLY for the impact of the ball
     if (option == 1) {
-        impactOption = true; //true is towards an out decision!
+        impactOption = true; //true is towards an out decision! Impact in line
     }
     if (option == 2) {
-        impactOption = false; //false is towards not out decision!
+        impactOption = false; //false is towards not out decision! Impact outside
     }
     
 }
@@ -263,9 +277,41 @@ function reviewLBW() {
    } //if pitching inline, impact inline, wickets hitting is out!
 
    if (decision == true) {
-    alert("It's out!");
+    alert("It's out! Batter is dismissed.");
    }
 
+   if (decision == false) {
+    alert("It's not out! Batter continues their innings.");
+   }
 
     
+}
+   */
+
+function decisionsLBW() {
+    var output = document.getElementById("howzzat"); // The output element to display the decision
+    var originalDecision = prompt("What was the original decision? Type 1 for out, type 2 for not out.");
+    var pitching = prompt("Where is the ball pitching? Type 1 for in line or outside off (if batter not making an attempt). Type 2 for outside leg or off (if batter making an attempt).");
+    var impact = prompt("Where is the impact of the ball? Type 1 for in line. Type 2 for outside.");
+    var wickets = prompt("Are the wickets being hit? Type 1 for yes, type 2 for no.");
+    var decision = ""; // Initialize decision variable
+    if (originalDecision == "1") { // Original decision was out
+        if (pitching == "1" && impact == "1" && wickets == "1") {
+            decision = "out"; // All conditions for out are met
+        } else {
+            decision = "not out"; // Any condition for not out is met
+        }
+    }
+    else if (originalDecision == "2") { // Original decision was not out
+        if (pitching == "2" || impact == "2" || wickets == "2") {
+            decision = "not out"; // Any condition for not out is met
+        } else {
+            decision = "out"; // All conditions for out are met
+        }
+    } 
+    else {
+        howzzat.innerHTML = "Invalid input for original decision. Please type 1 for out or 2 for not out.";
+        return; // Exit the function if the input is invalid
+    }
+    howzzat.innerHTML = "The final decision after review is: " + decision; // Displaying the final decision
 }
